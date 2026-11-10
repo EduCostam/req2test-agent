@@ -14,4 +14,4 @@
 - Chamadas sem resposta do provedor têm tokens e custo NULL (desconhecidos), nunca zero presumido. Falha de persistência não produz resposta de sucesso. Uma interrupção do banco depois da chamada pode deixar registro `running`; reconciliação durável pertence às fases seguintes.
 - Compose usa credenciais de desenvolvimento e portas vinculadas a localhost. Auth e controles de produção são Fase 4. Não publicar esta API diretamente na internet.
 - As lições cobrem apenas os conceitos implementados. Filas, autenticação, RAG, ferramentas, judges e deploy serão documentados nas fases correspondentes. Não há pacote tools vazio para inflar cobertura.
-- CI completo é Fase 5. Nesta fase os checks são comandos reproduzíveis locais e relatórios versionados; não afirmamos CI verde no GitHub.
+- CI foi antecipada por pedido explícito após a validação local: `.github/workflows/ci.yml` automatiza checks, build e Compose. Deploy e evals avançadas continuam fora do escopo. O relatório original da Fase 1 registra a situação anterior à criação da CI; uma execução remota verde deve ser confirmada na aba Actions.

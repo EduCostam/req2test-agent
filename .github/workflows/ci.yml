@@ -1,0 +1,99 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  LLM_PROVIDER: fake
+  FAKE_SEED: '10'
+
+jobs:
+  checks:
+    name: Checks (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install pinned pnpm
+        run: npm install --global pnpm@10.28.0
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Tests and coverage gate
+        run: pnpm test:coverage
+      - name: Smoke evaluation (minimum 95% valid)
+        run: pnpm eval:smoke
+      - name: Build
+        run: pnpm build
+      - name: Save reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checks-node-${{ matrix.node }}
+          path: |
+            coverage/coverage-summary.json
+            reports/smoke.json
+            reports/smoke.md
+          retention-days: 14
+
+  docker:
+    name: Docker and PostgreSQL
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Install dependencies for integration checks
+        run: |
+          npm install --global pnpm@10.28.0
+          pnpm install --frozen-lockfile
+      - name: Validate Compose and build images
+        run: |
+          docker compose config --quiet
+          docker compose build
+      - name: Start with a fresh database and wait for health
+        run: docker compose up -d --wait --wait-timeout 180
+      - name: Verify HTTP health, JSON and SSE
+        run: node scripts/check-http.mjs
+      - name: Verify real PostgreSQL persistence and migration idempotency
+        env:
+          DATABASE_URL: postgres://qa:qa_local_only@localhost:5432/qa_agent
+        run: pnpm test:postgres
+      - name: Collect container diagnostics
+        if: always()
+        run: |
+          mkdir -p reports/ci
+          docker compose ps -a > reports/ci/containers.txt
+          docker compose logs --no-color > reports/ci/compose.log 2>&1
+      - name: Save Docker diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-diagnostics
+          path: reports/ci/
+          retention-days: 14
+      - name: Clean up disposable CI containers and volume
+        if: always()
+        run: docker compose down --volumes --remove-orphans

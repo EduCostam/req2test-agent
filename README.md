@@ -84,6 +84,14 @@ Leia [arquitetura](docs/architecture.md), [suposições](docs/assumptions.md), [
 
 O adaptador HTTPS aceita protocolo chat-completions com schema estruturado, mas não foi validado com um provedor real. Para usá-lo, defina todas as variáveis `LLM_*` e rode a API fora do Compose padrão. Consulte preços e compatibilidade do provedor antes de configurar. Nunca use chave real em testes ou CI. Frameworks de IA, Redis, ferramentas e deploy não fazem parte desta entrega.
 
+## Verificações automáticas no GitHub Actions
+
+O workflow [CI](https://github.com/EduCostam/req2test-agent/actions/workflows/ci.yml) roda a cada push na main, em pull requests e pelo botão **Run workflow**. Checks em Node 20 e 24 executam instalação com lockfile, lint, typecheck, 45 testes com gate de cobertura, smoke com gate >=95% e build. Outro job constrói as imagens, inicia Compose com banco vazio, verifica health/JSON/SSE e testa migrations idempotentes e persistência no PostgreSQL real.
+
+Não exige secrets nem chave de LLM. DATABASE_URL do banco descartável é definida automaticamente. A página de cada execução mostra os passos e artifacts com relatórios e logs por 14 dias. Verde significa que todos os jobs passaram; abra o passo vermelho para diagnosticar falhas. Você não precisa repetir esses comandos manualmente a cada alteração.
+
+Esta é a CI e validação de build; deploy automático ainda depende de escolher onde hospedar. Para impedir merges com falhas, configure uma regra de proteção da main exigindo `Checks (Node 20)`, `Checks (Node 24)` e `Docker and PostgreSQL` após a primeira execução. O workflow não modifica regras de acesso do repositório.
+
 ## Fases seguintes
 
-A Fase 1 é a única implementada. Fase 2 (RAG), 3 (agente), 4 (produção) e 5 (evals/CI/deploy) só serão iniciadas mediante pedido. Nenhum comando destas fases existe ainda.
+A Fase 1 está implementada e a CI foi antecipada por pedido do usuário. Fase 2 (RAG), 3 (agente), 4 (produção) e os demais recursos da Fase 5 (evals avançadas/deploy) só serão iniciados mediante pedido.
