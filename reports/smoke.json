@@ -1,0 +1,182 @@
+{
+  "suite": "smoke",
+  "seed": 10,
+  "isSimulated": true,
+  "persistence": "memory (PostgreSQL not exercised)",
+  "prompt": {
+    "id": "qa-ask",
+    "version": "1.0.0",
+    "hash": "1f12881590801d7cfd49ef35de6b0f98762f5554f538f132952f1efa21ad6209"
+  },
+  "total": 20,
+  "firstAttemptValid": 17,
+  "validAfterRepair": 3,
+  "finalFailure": 0,
+  "finalValidRate": 1,
+  "calls": 23,
+  "inputTokens": 2611,
+  "outputTokens": 1281,
+  "simulatedCostUsd": 0.005173,
+  "results": [
+    {
+      "id": "qa-01",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 111,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000237
+    },
+    {
+      "id": "qa-02",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 109,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000235
+    },
+    {
+      "id": "qa-03",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 107,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000233
+    },
+    {
+      "id": "qa-04",
+      "outcome": "valid_after_repair",
+      "attempts": 2,
+      "inputTokens": 254,
+      "outputTokens": 70,
+      "simulatedCostUsd": 0.000394
+    },
+    {
+      "id": "qa-05",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-06",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 110,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000236
+    },
+    {
+      "id": "qa-07",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 107,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000233
+    },
+    {
+      "id": "qa-08",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-09",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-10",
+      "outcome": "valid_after_repair",
+      "attempts": 2,
+      "inputTokens": 253,
+      "outputTokens": 70,
+      "simulatedCostUsd": 0.000393
+    },
+    {
+      "id": "qa-11",
+      "outcome": "valid_after_repair",
+      "attempts": 2,
+      "inputTokens": 255,
+      "outputTokens": 70,
+      "simulatedCostUsd": 0.000395
+    },
+    {
+      "id": "qa-12",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 111,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000237
+    },
+    {
+      "id": "qa-13",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-14",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 107,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000233
+    },
+    {
+      "id": "qa-15",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-16",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 111,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000237
+    },
+    {
+      "id": "qa-17",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 108,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000234
+    },
+    {
+      "id": "qa-18",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 107,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000233
+    },
+    {
+      "id": "qa-19",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 110,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000236
+    },
+    {
+      "id": "qa-20",
+      "outcome": "first_attempt_valid",
+      "attempts": 1,
+      "inputTokens": 111,
+      "outputTokens": 63,
+      "simulatedCostUsd": 0.000237
+    }
+  ]
+}

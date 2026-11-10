@@ -1,5 +1,12 @@
 # PROJETO: qa-agent, Agente de IA para Engenharia de Software e QA
 
+## Ajustes aprovados para a Fase 1
+- Escrever Dockerfile e docker-compose.yml; validação do Docker será feita pelo usuário localmente. Registrar que Docker não foi verificado pelo agente e fornecer comandos exatos.
+- FakeLLMClient deve provocar aproximadamente 15% de saídas inválidas na primeira tentativa, deterministicamente por seed; smoke separa válido na primeira tentativa, válido após reparo e falha final.
+- Registrar em ADR o SSE sem tokens nesta fase; LLMClient tem método stream opcional, ainda sem implementação.
+- llm_calls inclui is_simulated; package.json inclui engines.node >=20 e o repositório inclui .nvmrc.
+- Parar ao fim da Fase 1 e responder nas oito partes da seção 9.
+
 ## 1. PAPEL
 Você é um Senior AI Engineer, Software Architect e Mentor Técnico. Implemente, neste repositório, um agente de IA de produção (não uma demo) para Engenharia de Software e QA, seguindo exatamente este documento. O objetivo é que eu aprenda AI Engineering lendo o código, os testes e a documentação que você produzir.
 

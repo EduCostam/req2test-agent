@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="pt-BR"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>req2test-agent</title>
+<style>body{font:18px system-ui;max-width:760px;margin:60px auto;padding:24px;background:#f5f7fb;color:#172138}textarea{box-sizing:border-box;width:100%;padding:12px;font:inherit}button{padding:12px 24px;margin:16px 0;background:#254d92;color:white;border:0;border-radius:6px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;padding:20px}</style>
+<h1>Assistente de QA</h1><p>Fase 1: perguntas técnicas. O ambiente padrão usa respostas simuladas.</p>
+<form><label for="question">Sua pergunta</label><textarea id="question" required maxlength="8000" rows="5"></textarea><button>Enviar pergunta</button></form>
+<pre id="result" aria-live="polite">Aguardando uma pergunta.</pre>
+<script type="module">
+const form=document.querySelector('form'),button=document.querySelector('button'),result=document.querySelector('#result');
+form.addEventListener('submit',async event=>{event.preventDefault();button.disabled=true;result.textContent='Processando…';try{const response=await fetch('/v1/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:document.querySelector('#question').value})});result.textContent=JSON.stringify(await response.json(),null,2);}catch{result.textContent='Não foi possível conectar à API.';}finally{button.disabled=false;}});
+</script></html>

@@ -1,0 +1,24 @@
+{
+  "phase": 1,
+  "date": "2026-11-09",
+  "environment": { "node": "24.16.0", "pnpm": "10.28.0", "os": "Windows" },
+  "commands": [
+    { "command": "pnpm install --frozen-lockfile", "exitCode": 0 },
+    { "command": "pnpm lint", "exitCode": 0 },
+    { "command": "pnpm typecheck", "exitCode": 0 },
+    { "command": "pnpm test:coverage", "exitCode": 0, "testFiles": 4, "passed": 45, "failed": 0 },
+    { "command": "pnpm eval:smoke", "exitCode": 0, "report": "reports/smoke.json" },
+    { "command": "pnpm build", "exitCode": 0 }
+  ],
+  "coverageScope": ["packages/core/src", "packages/llm/src"],
+  "coveragePercent": { "lines": 100, "statements": 100, "functions": 100, "branches": 98.95 },
+  "smoke": { "seed": 10, "total": 20, "firstAttemptValid": 17, "validAfterRepair": 3, "finalFailure": 0, "finalValidRate": 1, "calls": 23, "inputTokens": 2611, "outputTokens": 1281, "simulatedCostUsd": 0.005173 },
+  "notVerified": ["Docker build and Compose runtime", "Real PostgreSQL integration", "Real LLM provider", "Node 20 runtime", "GitHub CI"],
+  "notes": [
+    "Commands ran through npx --yes pnpm@10.28.0 because the preinstalled pnpm was version 11.",
+    "Initial sandbox test execution failed because esbuild could not read parent directories. Final offline tests ran successfully outside that sandbox.",
+    "A TypeScript test fixture typing error was corrected before final checks.",
+    "Coverage of PostgresStore uses a query mock; it is not evidence of a real database test.",
+    "Docker validation intentionally delegated to the user as requested. Implementation delivered; full local-runtime acceptance remains pending."
+  ]
+}

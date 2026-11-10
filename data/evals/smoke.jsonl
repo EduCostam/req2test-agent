@@ -1,0 +1,20 @@
+{"id":"qa-01","question":"Como testar os limites de idade em um cadastro?"}
+{"id":"qa-02","question":"Quais cenários negativos cobrem o login?"}
+{"id":"qa-03","question":"Como validar um contrato de API?"}
+{"id":"qa-04","question":"Como testar paginação de resultados?"}
+{"id":"qa-05","question":"Como testar descontos no checkout?"}
+{"id":"qa-06","question":"Como verificar idempotência de um pagamento?"}
+{"id":"qa-07","question":"Como testar campos obrigatórios?"}
+{"id":"qa-08","question":"Como testar datas e fusos horários?"}
+{"id":"qa-09","question":"Como definir uma tabela de decisão?"}
+{"id":"qa-10","question":"Como testar permissões de acesso?"}
+{"id":"qa-11","question":"Como verificar tratamento de timeout?"}
+{"id":"qa-12","question":"Como testar concorrência na reserva de estoque?"}
+{"id":"qa-13","question":"Como testar ordenação de uma lista?"}
+{"id":"qa-14","question":"Como validar migrações de banco?"}
+{"id":"qa-15","question":"Como testar respostas HTTP inválidas?"}
+{"id":"qa-16","question":"Como organizar testes unitários e de integração?"}
+{"id":"qa-17","question":"Como testar arredondamento de preços?"}
+{"id":"qa-18","question":"Como verificar mensagens de erro?"}
+{"id":"qa-19","question":"Como testar limites de tamanho de arquivos?"}
+{"id":"qa-20","question":"Como rastrear casos de teste até os requisitos?"}
