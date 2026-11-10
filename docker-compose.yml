@@ -10,7 +10,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U qa -d qa_agent"]
+      # The temporary initialization server only accepts Unix sockets.
+      # Probe TCP so migrate waits for the final server used by other containers.
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-p", "5432", "-U", "qa", "-d", "qa_agent"]
       interval: 3s
       timeout: 3s
       retries: 20

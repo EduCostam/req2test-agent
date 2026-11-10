@@ -1,5 +1,7 @@
 # Suposições e limites da Fase 1
 
+- Correção após validação local do usuário: as imagens foram construídas, mas migrate recebeu ECONNREFUSED. O health check original sem host podia aceitar o servidor temporário via socket Unix. Agora exige TCP em 127.0.0.1:5432 antes de liberar migrate. A nova execução Docker ainda deve ser confirmada pelo usuário; nenhum volume precisa ser apagado.
+
 - **Docker não foi verificado por mim (agente).** Por instrução do usuário, não executei Docker nesta fase. Dockerfile, Compose, health checks e integração PostgreSQL real devem ser validados localmente pelos comandos do README. Testes de SQL com mock não provam funcionamento do banco.
 - Ambiente de implementação: Node 24.16.0. `engines.node` exige >=20; `.nvmrc` e imagem Docker usam 24. Node 20 não foi executado neste ambiente. pnpm fixado em 10.28.0; a instalação inicialmente tentou o pnpm 11 do ambiente, depois foi refeita com 10.28.0.
 - Provider padrão: FakeLLMClient, sem rede, chave ou gasto real. O adaptador HTTPS compatível com chat completions foi testado com transporte injetado, não com provedor real. Cada provedor pode ter diferenças de protocolo.
